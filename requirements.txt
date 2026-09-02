@@ -1,7 +1,8 @@
 flask>=3.0
 requests>=2.31
 python-dotenv>=1.0
-yfinance>=0.2.40          # live mode only; demo mode needs nothing from here
+gunicorn>=21.2                 # only needed when hosting; not used locally
+yfinance>=0.2.40               # market data
 
 # Optional LLM providers -- install only the one you use.
 # The claude_code provider needs no package, just the `claude` CLI on PATH.

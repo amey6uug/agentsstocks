@@ -16,12 +16,12 @@ investment advice.**
 | `app.py` | Flask server, background-thread state machine, Telegram sender, SQLite audit log |
 | `scoring.py` | Deterministic Bull/Bear/Judge rules engine (always works, no key/network needed) |
 | `llm.py` | LLM debate engine — provider auto-detection, prompt, grounding verifier, fallback |
-| `data_sources.py` | Demo bundle loader + yfinance live adapter + evidence-bundle builder |
+| `data_sources.py` | yfinance adapter, evidence-bundle builder, screening and shortlisting |
 | `nse.py` | NSE index constituents, cap buckets, F&O list, option chain |
 | `dashboard.html` | The whole UI — single self-contained file, no build step |
 | `universe.json` | Editable ticker list, used by the "Custom" index option |
 | `cache/` | Created on first run — day-old copies of the NSE constituent lists |
-| `demo_data/*.json` | Nine hand-built evidence bundles (3 large/mid/small cap) for offline demo mode |
+| `Procfile` | Start command for hosting; unused when running locally |
 | `stock_agents.db` | Created on first run — SQLite audit trail of runs + verdicts |
 
 ## The agent panel
@@ -63,8 +63,9 @@ which ships its own binary without adding it to `PATH` — so if you use Claude
 Code in VS Code, this already works with nothing installed. If your CLI lives
 somewhere else, point `CLAUDE_CLI_PATH` at it in `.env`.
 
-Expect roughly 20–25 seconds per stock on this engine (about 3–4 minutes for
-the nine demo bundles). The dashboard streams verdicts as each one lands.
+Expect roughly 20–25 seconds per stock on this engine, so a run of 8 takes
+about three minutes. The dashboard streams verdicts as each one lands, and
+**Stop** cuts a run short at any point.
 
 **Option B — API key.** Copy `.env.example` to `.env` and set either:
 
@@ -105,14 +106,12 @@ or the UI.
 python app.py
 ```
 
-Open **http://127.0.0.1:5000**, pick a mode, and click **Start agents**.
+Open **http://127.0.0.1:5000** and click **Start agents**.
 
-- **Demo** — runs entirely offline against the nine bundled evidence files
-  in `demo_data/`. Good for a first run, or when markets are closed.
-- **Live** — pulls real NSE data via `yfinance` for the tickers listed in
-  `universe.json` (edit that file to change your universe). Use this during
-  NSE market hours: **Mon–Fri, 09:15–15:30 IST**. Outside those hours you'll
-  still get data, just stale/after-hours prices.
+All data is live: quotes come from `yfinance` and index, sector and F&O data
+from NSE. Use it during NSE market hours — **Mon–Fri, 09:15–15:30 IST**.
+Outside those hours everything still loads, but you are looking at the last
+close, and the header badge says so.
 
 Everything the app does — every run and every verdict — is logged to
 `stock_agents.db` (SQLite) for your own auditing.
@@ -275,10 +274,10 @@ natively.
 
 ## How a run works
 
-1. **Scout** screens the universe. Demo mode loads the pre-built bundles and
-   ignores the filters. Live mode resolves your index/cap/segment filters into
-   a stock list, ranks the whole list in one batched download, and keeps the
-   top `SHORTLIST_PER_BUCKET` movers per cap bucket. The batching matters: a
+1. **Scout** screens the universe. It resolves your index/cap/segment/sector
+   filters into a stock list, ranks the whole list in one batched download,
+   and deals the top movers across cap buckets until it has the number of
+   stocks you asked for. The batching matters: a
    Nifty 500 screen takes about 40 seconds, where fetching 500 tickers one at
    a time takes roughly ten minutes. Full evidence bundles are built only for
    the shortlist.
@@ -339,6 +338,47 @@ A stopped run unwinds cleanly rather than being abandoned:
 - the cancelled call is logged as "cancelled", never as an engine failure and
   fallback, because that is not what happened
 
+## Hosting it on a public URL
+
+**GitHub Pages cannot run this.** Pages serves static files only — no Python,
+no server. This app is a Flask server that calls NSE and Yahoo from the
+*server* side, shells out to an LLM, and writes SQLite. Opening
+`dashboard.html` from Pages would render the shell with every panel empty,
+because there is no `/api/...` behind it. There is no way around that short of
+rewriting the whole thing as a browser-only app, and it could not work even
+then: NSE does not send CORS headers, so a browser cannot call it directly.
+
+To get a URL that behaves like localhost you need a host that runs Python.
+`Procfile` and `gunicorn` are already set up, so on Render, Railway or Fly.io:
+
+1. Point the service at this repo.
+2. Build: `pip install -r requirements.txt` — start command comes from `Procfile`.
+3. Set `APP_PASSWORD` (see below), plus `ANTHROPIC_API_KEY` if you want LLM
+   debate, and the Telegram variables if you want signals.
+
+Four things to expect, none of them obvious:
+
+- **NSE blocks many datacenter IP ranges.** Sector flow, index movers, the F&O
+  chain and constituent lists may return 403 from a cloud host even though
+  they work from your machine. Yahoo/`yfinance` data is usually fine. Test
+  before relying on it; a small VPS in India is the usual workaround.
+- **The `claude` CLI will not exist on the host**, so the engine falls back to
+  the deterministic panel unless you set `ANTHROPIC_API_KEY` or `OPENAI_API_KEY`.
+- **Run one worker only.** Run state lives in process memory, so a second
+  worker would serve a different run's progress at random. The `Procfile`
+  pins `--workers 1` and uses threads for concurrency.
+- **`stock_agents.db` sits on ephemeral disk** on most free tiers and is wiped
+  on redeploy. Attach a volume if the audit trail matters.
+
+### Set a password before exposing it
+
+`APP_PASSWORD` turns on HTTP Basic auth across every route. It is off when
+unset, so local use is unchanged.
+
+Set it before putting this on a public URL. Without it, anyone who finds the
+address can start runs that spend your LLM credits and fire Telegram messages
+into your chat.
+
 ## Configuration reference (`.env`)
 
 | Key | Default | Purpose |
@@ -354,7 +394,8 @@ A stopped run unwinds cleanly rather than being abandoned:
 | `AGENT_DELAY` | `0.6` | Seconds of pacing between pipeline steps, purely visual |
 | `STOCK_COUNT` | `8` | Default number of stocks a run debates, dealt across cap buckets. The **Stocks** dropdown overrides it per run |
 | `SHORTLIST_PER_BUCKET` | `4` | Superseded by `STOCK_COUNT`; still read to derive its default |
-| `PORT` | `5000` | Local port the Flask server listens on |
+| `PORT` | `5000` | Port the server listens on; hosts set this for you |
+| `APP_PASSWORD` | — | Enables HTTP Basic auth on every route. **Set this before hosting publicly** |
 
 ## Swapping the data source
 
@@ -392,5 +433,3 @@ python scoring.py   # rules engine: BUY/SELL cases + an all-null bundle
 python llm.py       # grounding verifier, JSON extraction, provider detection
 ```
 
-The demo bundles are synthetic, hand-built data for offline demonstration —
-they are not real quotes.

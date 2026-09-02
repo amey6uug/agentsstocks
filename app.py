@@ -13,7 +13,7 @@ from datetime import datetime
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, Response, jsonify, request, send_from_directory
 
 import data_sources
 import llm
@@ -36,9 +36,15 @@ STOCK_COUNT_CHOICES = [3, 5, 8, 12, 16, 20, 30]
 PORT = int(os.getenv("PORT", "5000"))
 TELEGRAM_BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
 TELEGRAM_CHAT_ID = (os.getenv("TELEGRAM_CHAT_ID") or "").strip()
+# Set APP_PASSWORD before exposing this on a public URL. Without it anyone who
+# finds the address can start runs that spend your LLM credits and fire
+# Telegram messages into your chat.
+APP_PASSWORD = (os.getenv("APP_PASSWORD") or "").strip()
 
 AGENTS = ["scout", "technician", "fundamentalist", "newsdesk",
           "bull", "bear", "judge", "messenger"]
+
+DEPLOYED = bool(os.getenv("PORT") and not os.getenv("LOCAL_DEV"))
 
 app = Flask(__name__, static_folder=None)
 
@@ -47,6 +53,19 @@ STATE = {}
 # Set by /api/stop. Checked at every step boundary in run_pipeline, so a run
 # unwinds cleanly instead of being abandoned mid-write.
 STOP = threading.Event()
+
+
+@app.before_request
+def _require_password():
+    """Opt-in HTTP Basic gate. Off entirely when APP_PASSWORD is unset, so
+    local use is unchanged; any value turns it on for every route."""
+    if not APP_PASSWORD:
+        return None
+    auth = request.authorization
+    if auth and auth.password == APP_PASSWORD:
+        return None
+    return Response("Authentication required.", 401,
+                    {"WWW-Authenticate": 'Basic realm="AgentDesk"'})
 
 
 # --------------------------------------------------------------------------
@@ -99,7 +118,7 @@ def resolve_universe(index, cap, segment, sector=None):
     return nse.universe(index, cap, segment)
 
 
-def reset_state(mode="demo", filters=None):
+def reset_state(mode="live", filters=None):
     with _lock:
         STATE.clear()
         STATE.update({
@@ -297,19 +316,15 @@ def run_pipeline(mode, filters):
         set_step("screening")
         set_agents("working", "scout")
         pace()
-        if mode == "live":
-            stocks = resolve_universe(index, cap, segment, filters.get("sector"))
-            log(f"Scout: {nse.INDEX_LABELS.get(index, index)} · {cap} cap · "
-                f"{segment} · {data_sources.timeframe(tf_key)['label']} bars "
-                f"— {len(stocks)} stocks to screen"
-                f"{'' if intent == 'any' else f', hunting {intent} candidates'}"
-                f" — keeping {count}.")
-            bundles = data_sources.get_live_evidence_bundles(
-                stocks, count, tf_key, log, intent)
-        else:
-            log(f"Scout: loading the offline demo bundles, keeping {count}...")
-            bundles = data_sources.deal_shortlist(
-                data_sources.get_demo_evidence_bundles(), count)
+        stocks = resolve_universe(index, cap, segment, filters.get("sector"))
+        log(f"Scout: {nse.INDEX_LABELS.get(index, index)} · {cap} cap · "
+            f"{segment} · {data_sources.timeframe(tf_key)['label']} bars "
+            f"— {len(stocks)} stocks to screen"
+            f"{'' if intent == 'any' else f', hunting {intent} candidates'}"
+            f" — keeping {count}.")
+        bundles = data_sources.get_live_evidence_bundles(
+            stocks, count, tf_key, log, intent)
+
         set_agents("done", "scout")
         log(f"Scout: {len(bundles)} stocks shortlisted for debate.")
         if STOP.is_set():
@@ -625,9 +640,7 @@ def api_start():
     if STATE.get("running"):
         return jsonify({"ok": False, "error": "a run is already in progress"}), 409
     body = request.get_json(silent=True) or {}
-    mode = body.get("mode", "demo")
-    if mode not in ("demo", "live"):
-        return jsonify({"ok": False, "error": "mode must be demo or live"}), 400
+    mode = "live"   # demo bundles were synthetic and have been removed
     filters = {
         "index": body.get("index", "nifty50"),
         "cap": body.get("cap", "all"),
@@ -678,9 +691,11 @@ def api_history():
                     "runs": [dict(r) for r in runs]})
 
 
+init_db()          # safe to call repeatedly: CREATE TABLE IF NOT EXISTS
+reset_state()
+
+
 if __name__ == "__main__":
-    init_db()
-    reset_state()
     print(f"\n  {BRAND} — http://127.0.0.1:{PORT}")
     print(f"  engine: {llm.detect_provider()} · telegram: "
           f"{'configured' if telegram_configured() else 'not configured'}")

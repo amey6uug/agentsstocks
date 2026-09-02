@@ -395,11 +395,6 @@
     <div class="fld" data-for="options"><label>Expiry</label>
       <select id="f-expiry" onchange="loadChain(this.value)"></select></div>
 
-    <div class="fld" data-for="agents"><label>Data</label>
-      <div class="seg">
-        <button id="m-demo" class="sel" onclick="setMode('demo')">Demo</button>
-        <button id="m-live" onclick="setMode('live')">Live</button>
-      </div></div>
 
     <div class="grow"></div>
     <button class="go" id="go" data-for="agents" onclick="start()">Start agents</button>
@@ -548,7 +543,7 @@ const ROLES = {
   bull:"argues the case to buy", bear:"argues the case against",
   judge:"issues verdict and confidence", messenger:"sends signals to Telegram"
 };
-let mode = "demo", page = "agents", open = new Set(), lastLog = "", running = false;
+let mode = "live", page = "agents", open = new Set(), lastLog = "", running = false;
 let chartBars = [];
 // Actionable calls only by default. The judge still gets to say HOLD -- forcing
 // a direction it cannot support is exactly the fabrication this app avoids.
@@ -606,20 +601,6 @@ function switchPage(p){
 }
 
 /* ---------------- agents ---------------- */
-function setMode(m){
-  if (running) return;
-  mode = m;
-  el("m-demo").classList.toggle("sel", m === "demo");
-  el("m-live").classList.toggle("sel", m === "live");
-}
-
-async function stopRun(){
-  const b = el("stopbtn");
-  b.disabled = true;
-  b.textContent = "Stopping…";
-  try { await fetch("/api/stop", {method:"POST"}); } catch {}
-}
-
 async function start(){
   el("go").disabled = true;
   el("stopbtn").disabled = false;

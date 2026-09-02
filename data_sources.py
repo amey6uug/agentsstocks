@@ -29,7 +29,7 @@ EVIDENCE BUNDLE SHAPE
   "news":            [{"title": str, "date": "YYYY-MM-DD", "source": str}],
   "data_gaps":       ["pe", "roe"],           # names of every None field
   "as_of":           "2026-08-15T09:30:00",
-  "source":          "demo" | "yfinance",
+  "source":          "yfinance",
 }
 
 Any numeric field that cannot be computed MUST be set to None and its name
@@ -43,7 +43,6 @@ import time
 from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DEMO_DIR = os.path.join(HERE, "demo_data")
 UNIVERSE_PATH = os.path.join(HERE, "universe.json")
 
 # Fields that must exist on every bundle; used to normalise partial inputs.
@@ -102,23 +101,6 @@ def normalise(bundle):
 def load_universe():
     with open(UNIVERSE_PATH, "r", encoding="utf-8") as fh:
         return json.load(fh)
-
-
-# --------------------------------------------------------------------------
-# Demo mode -- offline, deterministic, always available
-# --------------------------------------------------------------------------
-
-def get_demo_evidence_bundles():
-    """Load every hand-built bundle in demo_data/, sorted by cap bucket."""
-    order = {"large": 0, "mid": 1, "small": 2}
-    bundles = []
-    for fname in sorted(os.listdir(DEMO_DIR)):
-        if not fname.endswith(".json"):
-            continue
-        with open(os.path.join(DEMO_DIR, fname), "r", encoding="utf-8") as fh:
-            bundles.append(normalise(json.load(fh)))
-    bundles.sort(key=lambda b: (order.get(b["cap_bucket"], 9), -abs(b["day_change_pct"] or 0)))
-    return bundles
 
 
 # --------------------------------------------------------------------------
