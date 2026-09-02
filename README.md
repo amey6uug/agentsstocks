@@ -22,6 +22,8 @@ investment advice.**
 | `universe.json` | Editable ticker list, used by the "Custom" index option |
 | `cache/` | Created on first run — day-old copies of the NSE constituent lists |
 | `Procfile` | Start command for hosting; unused when running locally |
+| `export_static.py` | Builds the read-only snapshot page published to GitHub Pages |
+| `.github/workflows/publish.yml` | Scheduled job that builds and deploys that snapshot |
 | `stock_agents.db` | Created on first run — SQLite audit trail of runs + verdicts |
 
 ## The agent panel
@@ -338,9 +340,39 @@ A stopped run unwinds cleanly rather than being abandoned:
 - the cancelled call is logged as "cancelled", never as an engine failure and
   fallback, because that is not what happened
 
-## Hosting it on a public URL
+## A shareable link
 
-**GitHub Pages cannot run this.** Pages serves static files only — no Python,
+There are two answers, because they give you different things.
+
+### The snapshot page (a link that works today)
+
+`export_static.py` runs the pipeline and writes one self-contained HTML file
+to `docs/`. A scheduled GitHub Action runs it through the Indian session and
+publishes the result to GitHub Pages, so you get a URL you can open anywhere:
+
+```
+https://amey6uug.github.io/agentsstocks/
+```
+
+**Enable it once:** repo *Settings → Pages → Source: **GitHub Actions***. Then
+run *Actions → Publish snapshot → Run workflow*, or wait for the next
+scheduled run. Add an `ANTHROPIC_API_KEY` repository secret if you want LLM
+debate rather than the deterministic panel; the `claude` CLI does not exist on
+a runner.
+
+It is **read-only**: real verdicts with entry/target/stop, sector flow and
+FII/DII flows, as of the last run. There are no buttons — you cannot start a
+run, change filters, or browse the option chain from it. Data is as fresh as
+the last Action, not live.
+
+Two things can go wrong and the page says so rather than hiding it: NSE blocks
+many datacenter IP ranges, so sector and index sections may fail from a GitHub
+runner even though they work on your machine; and the whole build is skipped
+if `requirements.txt` cannot install.
+
+### The full app (needs a Python host)
+
+**GitHub Pages cannot run the interactive dashboard.** Pages serves static files only — no Python,
 no server. This app is a Flask server that calls NSE and Yahoo from the
 *server* side, shells out to an LLM, and writes SQLite. Opening
 `dashboard.html` from Pages would render the shell with every panel empty,

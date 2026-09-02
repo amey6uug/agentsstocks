@@ -1,0 +1,51 @@
+name: Publish snapshot
+
+# NSE trades 09:15-15:30 IST = 03:45-10:00 UTC. GitHub cron is UTC only, so
+# these fire through the Indian session and once just after the close.
+on:
+  schedule:
+    - cron: "15 4,6,8,10 * * 1-5"
+  workflow_dispatch:        # lets you run it on demand from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Build the snapshot
+        env:
+          EXPORT_INDEX: ${{ vars.EXPORT_INDEX || 'nifty50' }}
+          EXPORT_COUNT: ${{ vars.EXPORT_COUNT || '6' }}
+          EXPORT_TIMEFRAME: ${{ vars.EXPORT_TIMEFRAME || '1d' }}
+          # Optional. Without a key the deterministic engine runs instead --
+          # the claude CLI does not exist on a runner.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LLM_PROVIDER: ${{ secrets.ANTHROPIC_API_KEY && 'anthropic' || 'deterministic' }}
+        run: python export_static.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
