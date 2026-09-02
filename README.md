@@ -22,7 +22,8 @@ investment advice.**
 | `universe.json` | Editable ticker list, used by the "Custom" index option |
 | `cache/` | Created on first run — day-old copies of the NSE constituent lists |
 | `Procfile` | Start command for hosting; unused when running locally |
-| `export_static.py` | Builds the read-only snapshot page published to GitHub Pages |
+| `export_static.py` | Builds `index.html`, the read-only snapshot published to GitHub Pages |
+| `index.html` | Generated snapshot — the GitHub Pages landing page. Rebuilt by the workflow |
 | `.github/workflows/publish.yml` | Scheduled job that builds and deploys that snapshot |
 | `stock_agents.db` | Created on first run — SQLite audit trail of runs + verdicts |
 
@@ -346,19 +347,29 @@ There are two answers, because they give you different things.
 
 ### The snapshot page (a link that works today)
 
-`export_static.py` runs the pipeline and writes one self-contained HTML file
-to `docs/`. A scheduled GitHub Action runs it through the Indian session and
-publishes the result to GitHub Pages, so you get a URL you can open anywhere:
+`export_static.py` runs the pipeline and writes a self-contained `index.html`
+at the repo root. A scheduled GitHub Action rebuilds it through the Indian
+session and commits it, so this URL is always the latest snapshot:
 
 ```
 https://amey6uug.github.io/agentsstocks/
 ```
 
-**Enable it once:** repo *Settings → Pages → Source: **GitHub Actions***. Then
-run *Actions → Publish snapshot → Run workflow*, or wait for the next
-scheduled run. Add an `ANTHROPIC_API_KEY` repository secret if you want LLM
-debate rather than the deterministic panel; the `claude` CLI does not exist on
-a runner.
+No repo settings need changing. Pages here deploys from the branch, and a
+branch deploy renders `README.md` as the landing page *only when there is no
+`index.html`* — so committing one takes over the URL. `.nojekyll` stops Jekyll
+reprocessing the output.
+
+Add an `ANTHROPIC_API_KEY` repository secret if you want LLM debate rather
+than the deterministic panel; the `claude` CLI does not exist on a runner.
+Optional repo variables `EXPORT_INDEX`, `EXPORT_COUNT` and `EXPORT_TIMEFRAME`
+change what gets screened.
+
+The trade-off of this approach: the workflow commits the rebuilt page, so the
+history collects a snapshot commit each run. They are marked `[skip ci]` and
+skipped entirely when nothing changed. If you would rather keep the history
+clean, switch *Settings → Pages → Source* to **GitHub Actions** and replace the
+commit step with `actions/upload-pages-artifact` + `actions/deploy-pages`.
 
 It is **read-only**: real verdicts with entry/target/stop, sector flow and
 FII/DII flows, as of the last run. There are no buttons — you cannot start a

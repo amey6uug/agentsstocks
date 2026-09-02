@@ -5,15 +5,16 @@ name: Publish snapshot
 on:
   schedule:
     - cron: "15 4,6,8,10 * * 1-5"
-  workflow_dispatch:        # lets you run it on demand from the Actions tab
+  workflow_dispatch:        # run on demand from the Actions tab
 
+# Pages on this repo deploys from the branch, so the job commits the rebuilt
+# index.html back to main rather than uploading a Pages artifact. That needs
+# write access to contents.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: publish-snapshot
   cancel-in-progress: true
 
 jobs:
@@ -31,21 +32,17 @@ jobs:
           EXPORT_INDEX: ${{ vars.EXPORT_INDEX || 'nifty50' }}
           EXPORT_COUNT: ${{ vars.EXPORT_COUNT || '6' }}
           EXPORT_TIMEFRAME: ${{ vars.EXPORT_TIMEFRAME || '1d' }}
-          # Optional. Without a key the deterministic engine runs instead --
-          # the claude CLI does not exist on a runner.
+          # Optional. The claude CLI does not exist on a runner, so without a
+          # key the deterministic engine runs instead.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LLM_PROVIDER: ${{ secrets.ANTHROPIC_API_KEY && 'anthropic' || 'deterministic' }}
         run: python export_static.py
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Commit the rebuilt page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html data.json .nojekyll
+          # Nothing to do when the numbers are unchanged; avoids empty commits.
+          git diff --staged --quiet && echo "no change" && exit 0
+          git commit -m "Snapshot $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
+          git push

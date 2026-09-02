@@ -22,7 +22,11 @@ import llm
 import nse
 import scoring
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docs")
+# Written to the repo root, not docs/. GitHub Pages "deploy from a branch"
+# renders README.md as the index only when no index.html exists there, so a
+# root index.html is what makes the snapshot the page you actually land on --
+# no repo setting needs changing.
+OUT_DIR = os.getenv("EXPORT_OUT") or os.path.dirname(os.path.abspath(__file__))
 INDEX = os.getenv("EXPORT_INDEX", "nifty50")
 COUNT = int(os.getenv("EXPORT_COUNT", "6"))
 TIMEFRAME = os.getenv("EXPORT_TIMEFRAME", "1d")
@@ -71,6 +75,8 @@ def build():
     flows, _ = safe("flows", nse.fii_dii, [])
 
     os.makedirs(OUT_DIR, exist_ok=True)
+    # Stop Jekyll touching the output; it is already plain HTML.
+    open(os.path.join(OUT_DIR, ".nojekyll"), "w").close()
     page = render(verdicts, verdict_err, sectors, sector_err, flows, market, provider)
     with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as fh:
         fh.write(page)
@@ -85,7 +91,7 @@ def build():
                                  "confidence": v["result"]["confidence"],
                                  "levels": v["levels"]} for v in verdicts],
                    "sectors": sectors, "flows": flows}, fh, indent=1, default=str)
-    print(f"wrote {OUT_DIR}/index.html  ({len(page):,} bytes, "
+    print(f"wrote {os.path.join(OUT_DIR, 'index.html')}  ({len(page):,} bytes, "
           f"{len(verdicts)} verdicts, {len(sectors)} sectors)")
     return len(verdicts)
 
