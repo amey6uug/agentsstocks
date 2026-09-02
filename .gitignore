@@ -1,0 +1,11 @@
+# Secrets — never commit. .env holds the Telegram bot token and API keys.
+.env
+
+# Generated at runtime, not source
+stock_agents.db
+cache/
+__pycache__/
+*.py[cod]
+
+# Local backups
+*.bak

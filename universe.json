@@ -1,0 +1,32 @@
+{
+  "large": [
+    {"ticker": "RELIANCE.NS", "name": "Reliance Industries"},
+    {"ticker": "TCS.NS", "name": "Tata Consultancy Services"},
+    {"ticker": "HDFCBANK.NS", "name": "HDFC Bank"},
+    {"ticker": "ICICIBANK.NS", "name": "ICICI Bank"},
+    {"ticker": "INFY.NS", "name": "Infosys"},
+    {"ticker": "LT.NS", "name": "Larsen & Toubro"},
+    {"ticker": "ITC.NS", "name": "ITC"},
+    {"ticker": "BHARTIARTL.NS", "name": "Bharti Airtel"}
+  ],
+  "mid": [
+    {"ticker": "POLYCAB.NS", "name": "Polycab India"},
+    {"ticker": "PERSISTENT.NS", "name": "Persistent Systems"},
+    {"ticker": "ASTRAL.NS", "name": "Astral"},
+    {"ticker": "CUMMINSIND.NS", "name": "Cummins India"},
+    {"ticker": "DIXON.NS", "name": "Dixon Technologies"},
+    {"ticker": "COFORGE.NS", "name": "Coforge"},
+    {"ticker": "AUROPHARMA.NS", "name": "Aurobindo Pharma"},
+    {"ticker": "FEDERALBNK.NS", "name": "Federal Bank"}
+  ],
+  "small": [
+    {"ticker": "RAILTEL.NS", "name": "RailTel Corporation"},
+    {"ticker": "JYOTHYLAB.NS", "name": "Jyothy Labs"},
+    {"ticker": "TRIVENI.NS", "name": "Triveni Engineering"},
+    {"ticker": "GRANULES.NS", "name": "Granules India"},
+    {"ticker": "KIRLOSENG.NS", "name": "Kirloskar Oil Engines"},
+    {"ticker": "GREENPANEL.NS", "name": "Greenpanel Industries"},
+    {"ticker": "TIIL.NS", "name": "Technocraft Industries"},
+    {"ticker": "SHAILY.NS", "name": "Shaily Engineering Plastics"}
+  ]
+}

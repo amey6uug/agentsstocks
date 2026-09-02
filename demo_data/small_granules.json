@@ -1,0 +1,39 @@
+{
+  "ticker": "GRANULES.NS",
+  "name": "Granules India",
+  "cap_bucket": "small",
+  "price": 645.2,
+  "day_change_pct": 5.6,
+  "week_change_pct": 12.4,
+  "month_change_pct": 21.8,
+  "sma20": 612.4,
+  "sma50": 588.1,
+  "sma200": 540.9,
+  "rsi14": 76.4,
+  "volume": 5402880,
+  "avg_volume_20d": 2101440,
+  "week52_high": 658.4,
+  "week52_low": 372.0,
+  "analyst_target": 610.0,
+  "news": [
+    {
+      "title": "USFDA inspection issues observations at Gagillapur facility",
+      "date": "2026-08-13",
+      "source": "Reuters"
+    },
+    {
+      "title": "Brokerage flags valuation warning after the recent rally",
+      "date": "2026-08-12",
+      "source": "Mint"
+    }
+  ],
+  "analyst_upside_pct": -5.46,
+  "pe": null,
+  "roe": null,
+  "as_of": "2026-08-14T15:30:00",
+  "source": "demo",
+  "data_gaps": [
+    "pe",
+    "roe"
+  ]
+}

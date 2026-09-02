@@ -1,0 +1,9 @@
+flask>=3.0
+requests>=2.31
+python-dotenv>=1.0
+yfinance>=0.2.40          # live mode only; demo mode needs nothing from here
+
+# Optional LLM providers -- install only the one you use.
+# The claude_code provider needs no package, just the `claude` CLI on PATH.
+# anthropic>=0.40
+# openai>=1.40

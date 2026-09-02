@@ -1,0 +1,44 @@
+{
+  "ticker": "RELIANCE.NS",
+  "name": "Reliance Industries",
+  "cap_bucket": "large",
+  "price": 1502.4,
+  "day_change_pct": 2.18,
+  "week_change_pct": 4.62,
+  "month_change_pct": 7.85,
+  "sma20": 1468.1,
+  "sma50": 1441.35,
+  "sma200": 1385.7,
+  "rsi14": 62.4,
+  "volume": 12410882,
+  "avg_volume_20d": 8120450,
+  "week52_high": 1551.0,
+  "week52_low": 1114.85,
+  "analyst_target": 1720.0,
+  "news": [
+    {
+      "title": "Reliance Jio adds record subscribers, ARPU growth beats street estimates",
+      "date": "2026-08-13",
+      "source": "Business Standard"
+    },
+    {
+      "title": "New petrochemical expansion wins environmental approval",
+      "date": "2026-08-11",
+      "source": "Mint"
+    },
+    {
+      "title": "Retail arm opens 240 stores in the quarter",
+      "date": "2026-08-08",
+      "source": "Economic Times"
+    }
+  ],
+  "analyst_upside_pct": 14.48,
+  "pe": null,
+  "roe": null,
+  "as_of": "2026-08-14T15:30:00",
+  "source": "demo",
+  "data_gaps": [
+    "pe",
+    "roe"
+  ]
+}
