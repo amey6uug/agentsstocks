@@ -23,7 +23,7 @@ investment advice.**
 | `cache/` | Created on first run — day-old copies of the NSE constituent lists |
 | `Procfile` | Start command for hosting; unused when running locally |
 | `export_static.py` | Builds `index.html`, the read-only snapshot published to GitHub Pages |
-| `index.html` | Generated snapshot — the GitHub Pages landing page. Rebuilt by the workflow |
+| `docs/index.html` | Generated snapshot — the GitHub Pages landing page. Rebuilt by the workflow |
 | `.github/workflows/publish.yml` | Scheduled job that builds and deploys that snapshot |
 | `stock_agents.db` | Created on first run — SQLite audit trail of runs + verdicts |
 
@@ -348,17 +348,21 @@ There are two answers, because they give you different things.
 ### The snapshot page (a link that works today)
 
 `export_static.py` runs the pipeline and writes a self-contained `index.html`
-at the repo root. A scheduled GitHub Action rebuilds it through the Indian
-session and commits it, so this URL is always the latest snapshot:
+into `docs/`. A scheduled GitHub Action rebuilds it through the Indian session
+and commits it, so this URL is always the latest snapshot:
 
 ```
 https://amey6uug.github.io/agentsstocks/
 ```
 
-No repo settings need changing. Pages here deploys from the branch, and a
-branch deploy renders `README.md` as the landing page *only when there is no
-`index.html`* — so committing one takes over the URL. `.nojekyll` stops Jekyll
-reprocessing the output.
+**Pages on this repo is configured as branch `main`, folder `/docs`** — that is
+why the output goes there and why `docs/` must stay committed. Jekyll fails the
+whole build with `No such file or directory - /github/workspace/docs` if the
+folder is missing, and Pages then keeps serving the last good deploy, which
+looks exactly like nothing happening. `docs/.nojekyll` skips Jekyll processing
+so the file is served as written.
+
+If you ever change the Pages source, set `EXPORT_OUT` to match the new folder.
 
 Add an `ANTHROPIC_API_KEY` repository secret if you want LLM debate rather
 than the deterministic panel; the `claude` CLI does not exist on a runner.

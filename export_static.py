@@ -22,11 +22,11 @@ import llm
 import nse
 import scoring
 
-# Written to the repo root, not docs/. GitHub Pages "deploy from a branch"
-# renders README.md as the index only when no index.html exists there, so a
-# root index.html is what makes the snapshot the page you actually land on --
-# no repo setting needs changing.
-OUT_DIR = os.getenv("EXPORT_OUT") or os.path.dirname(os.path.abspath(__file__))
+# This repo's Pages is configured as: branch main, folder /docs. Jekyll fails
+# the build outright if that folder is missing, so the output goes there and
+# docs/ must stay committed. Overridable if the Pages source ever changes.
+OUT_DIR = os.getenv("EXPORT_OUT") or os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "docs")
 INDEX = os.getenv("EXPORT_INDEX", "nifty50")
 COUNT = int(os.getenv("EXPORT_COUNT", "6"))
 TIMEFRAME = os.getenv("EXPORT_TIMEFRAME", "1d")

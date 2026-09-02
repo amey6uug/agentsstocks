@@ -7,9 +7,9 @@ on:
     - cron: "15 4,6,8,10 * * 1-5"
   workflow_dispatch:        # run on demand from the Actions tab
 
-# Pages on this repo deploys from the branch, so the job commits the rebuilt
-# index.html back to main rather than uploading a Pages artifact. That needs
-# write access to contents.
+# Pages here is configured as: branch main, folder /docs. The job rebuilds
+# docs/index.html and commits it back to main; Pages picks it up from there.
+# That needs write access to contents, not pages:write.
 permissions:
   contents: write
 
@@ -41,7 +41,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html data.json .nojekyll
+          git add -f docs/index.html docs/data.json docs/.nojekyll
           # Nothing to do when the numbers are unchanged; avoids empty commits.
           git diff --staged --quiet && echo "no change" && exit 0
           git commit -m "Snapshot $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
