@@ -1,101 +1,101 @@
 {
- "generated_at": "2026-09-04T08:52:59.683134+00:00",
+ "generated_at": "2026-09-04T14:24:23.384697+00:00",
  "index": "nifty50",
  "timeframe": "1d",
  "market": {
-  "open": true,
-  "status": "Open",
-  "as_of": "04-Sep-2026 14:20",
-  "message": "Normal Market is Open"
+  "open": false,
+  "status": "Closed",
+  "as_of": "04-Sep-2026 15:30",
+  "message": "Normal Market has Closed"
  },
  "engine": "deterministic",
  "verdicts": [
   {
    "ticker": "SBILIFE.NS",
    "name": "SBI Life Insurance Company Ltd.",
-   "price": 1762.8,
-   "verdict": "HOLD",
-   "confidence": 4,
-   "levels": null
+   "price": 1775.0,
+   "verdict": "BUY",
+   "confidence": 5,
+   "levels": {
+    "entry": 1775.0,
+    "entry_basis": "at market, price is already at or below the 20-bar average",
+    "target": 2342.97,
+    "target_basis": "analyst consensus target",
+    "stop": 1700.4,
+    "stop_basis": "52-week low",
+    "upside_pct": 32.0,
+    "downside_pct": -4.2,
+    "risk_reward": 7.61
+   }
   },
   {
    "ticker": "TATASTEEL.NS",
    "name": "Tata Steel Ltd.",
-   "price": 189.11,
+   "price": 188.79,
    "verdict": "BUY",
    "confidence": 5,
    "levels": {
-    "entry": 185.76,
+    "entry": 185.74,
     "entry_basis": "pullback to the 20-bar average",
     "target": 218.09,
     "target_basis": "analyst consensus target",
     "stop": 160.06,
     "stop_basis": "52-week low",
-    "upside_pct": 17.4,
-    "downside_pct": -13.84,
+    "upside_pct": 17.42,
+    "downside_pct": -13.83,
     "risk_reward": 1.26
-   }
-  },
-  {
-   "ticker": "CIPLA.NS",
-   "name": "Cipla Ltd.",
-   "price": 1380.9,
-   "verdict": "HOLD",
-   "confidence": 4,
-   "levels": null
-  },
-  {
-   "ticker": "AXISBANK.NS",
-   "name": "Axis Bank Ltd.",
-   "price": 1279.2,
-   "verdict": "BUY",
-   "confidence": 5,
-   "levels": {
-    "entry": 1246.23,
-    "entry_basis": "pullback to the 20-bar average",
-    "target": 1585.95,
-    "target_basis": "analyst consensus target",
-    "stop": 1047.3,
-    "stop_basis": "52-week low",
-    "upside_pct": 27.26,
-    "downside_pct": -15.96,
-    "risk_reward": 1.71
-   }
-  },
-  {
-   "ticker": "RELIANCE.NS",
-   "name": "Reliance Industries Ltd.",
-   "price": 1327.9,
-   "verdict": "BUY",
-   "confidence": 6,
-   "levels": {
-    "entry": 1310.45,
-    "entry_basis": "pullback to the 20-bar average",
-    "target": 1677.31,
-    "target_basis": "analyst consensus target",
-    "stop": 1303.23,
-    "stop_basis": "50-bar average",
-    "upside_pct": 27.99,
-    "downside_pct": -0.55,
-    "risk_reward": 50.81
    }
   },
   {
    "ticker": "HDFCLIFE.NS",
    "name": "HDFC Life Insurance Company Ltd.",
-   "price": 543.5,
+   "price": 546.4,
    "verdict": "BUY",
-   "confidence": 5,
+   "confidence": 6,
    "levels": {
-    "entry": 542.18,
+    "entry": 542.32,
     "entry_basis": "pullback to the 20-bar average",
     "target": 746.76,
     "target_basis": "analyst consensus target",
     "stop": 530.5,
     "stop_basis": "52-week low",
-    "upside_pct": 37.73,
-    "downside_pct": -2.15,
-    "risk_reward": 17.52
+    "upside_pct": 37.7,
+    "downside_pct": -2.18,
+    "risk_reward": 17.3
+   }
+  },
+  {
+   "ticker": "HCLTECH.NS",
+   "name": "HCL Technologies Ltd.",
+   "price": 1293.4,
+   "verdict": "SELL",
+   "confidence": 7,
+   "levels": null
+  },
+  {
+   "ticker": "BHARTIARTL.NS",
+   "name": "Bharti Airtel Ltd.",
+   "price": 1840.0,
+   "verdict": "HOLD",
+   "confidence": 4,
+   "levels": null
+  },
+  {
+   "ticker": "RELIANCE.NS",
+   "name": "Reliance Industries Ltd.",
+   "price": 1322.0,
+   "verdict": "BUY",
+   "confidence": 6,
+   "levels": {
+    "entry": 1310.15,
+    "entry_basis": "pullback to the 20-bar average",
+    "target": 1677.31,
+    "target_basis": "analyst consensus target",
+    "stop": 1303.11,
+    "stop_basis": "50-bar average",
+    "upside_pct": 28.02,
+    "downside_pct": -0.54,
+    "risk_reward": 52.15
    }
   }
  ],
@@ -103,176 +103,176 @@
   {
    "symbol": "NIFTY METAL",
    "label": "METAL",
-   "last": 13342.45,
-   "variation": 166.4,
-   "percent_change": 1.26,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY MS IT TELCM",
-   "label": "MS IT TELCM",
-   "last": 10213.75,
-   "variation": 72.75,
-   "percent_change": 0.72,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY FINSRV25 50",
-   "label": "FINSRV25 50",
-   "last": 28270.2,
-   "variation": 185.7,
-   "percent_change": 0.66,
+   "last": 13317.45,
+   "variation": 141.4,
+   "percent_change": 1.07,
    "drillable": true
   },
   {
    "symbol": "NIFTY FINSEREXBNK",
    "label": "FINSEREXBNK",
-   "last": 32119.3,
-   "variation": 194.3,
-   "percent_change": 0.61,
+   "last": 32179.7,
+   "variation": 254.7,
+   "percent_change": 0.8,
    "drillable": false
   },
   {
-   "symbol": "NIFTY PVT BANK",
-   "label": "PVT BANK",
-   "last": 27901.7,
-   "variation": 153.85,
-   "percent_change": 0.55,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY OIL AND GAS",
-   "label": "OIL AND GAS",
-   "last": 11219.4,
-   "variation": 54.75,
-   "percent_change": 0.49,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY CEMENT",
-   "label": "CEMENT",
-   "last": 14655.4,
-   "variation": 67.2,
-   "percent_change": 0.46,
+   "symbol": "NIFTY MS IT TELCM",
+   "label": "MS IT TELCM",
+   "last": 10205.9,
+   "variation": 64.9,
+   "percent_change": 0.64,
    "drillable": false
   },
   {
    "symbol": "NIFTY MS FIN SERV",
    "label": "MS FIN SERV",
-   "last": 22788.6,
-   "variation": 95.5,
-   "percent_change": 0.42,
+   "last": 22818.45,
+   "variation": 125.35,
+   "percent_change": 0.55,
    "drillable": false
+  },
+  {
+   "symbol": "NIFTY FINSRV25 50",
+   "label": "FINSRV25 50",
+   "last": 28217.1,
+   "variation": 132.6,
+   "percent_change": 0.47,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY CEMENT",
+   "label": "CEMENT",
+   "last": 14651.6,
+   "variation": 63.4,
+   "percent_change": 0.43,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY MEDIA",
+   "label": "MEDIA",
+   "last": 1565.45,
+   "variation": 4.7,
+   "percent_change": 0.3,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY PVT BANK",
+   "label": "PVT BANK",
+   "last": 27824.5,
+   "variation": 76.65,
+   "percent_change": 0.28,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY OIL AND GAS",
+   "label": "OIL AND GAS",
+   "last": 11187.65,
+   "variation": 23,
+   "percent_change": 0.21,
+   "drillable": true
   },
   {
    "symbol": "NIFTY BANK",
    "label": "BANK",
-   "last": 57527.5,
-   "variation": 146.9,
-   "percent_change": 0.26,
+   "last": 57369.65,
+   "variation": -10.95,
+   "percent_change": -0.02,
    "drillable": true
   },
   {
    "symbol": "NIFTY FMCG",
    "label": "FMCG",
-   "last": 45906.75,
-   "variation": -48.9,
-   "percent_change": -0.11,
+   "last": 45892.75,
+   "variation": -62.9,
+   "percent_change": -0.14,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY CONSR DURBL",
+   "label": "CONSR DURBL",
+   "last": 39483.8,
+   "variation": -168.9,
+   "percent_change": -0.43,
    "drillable": true
   },
   {
    "symbol": "NIFTY PSU BANK",
    "label": "PSU BANK",
-   "last": 8541.35,
-   "variation": -11.25,
-   "percent_change": -0.13,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY MIDSML HLTH",
-   "label": "MIDSML HLTH",
-   "last": 52002.65,
-   "variation": -172.95,
-   "percent_change": -0.33,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY IT",
-   "label": "IT",
-   "last": 30721.5,
-   "variation": -117.35,
-   "percent_change": -0.38,
+   "last": 8514.85,
+   "variation": -37.75,
+   "percent_change": -0.44,
    "drillable": true
   },
   {
    "symbol": "NIFTY AUTO",
    "label": "AUTO",
-   "last": 27722.1,
-   "variation": -115.3,
-   "percent_change": -0.41,
+   "last": 27710.9,
+   "variation": -126.5,
+   "percent_change": -0.45,
    "drillable": true
   },
   {
-   "symbol": "NIFTY MEDIA",
-   "label": "MEDIA",
-   "last": 1553.95,
-   "variation": -6.8,
-   "percent_change": -0.44,
+   "symbol": "NIFTY MIDSML HLTH",
+   "label": "MIDSML HLTH",
+   "last": 51936.75,
+   "variation": -238.85,
+   "percent_change": -0.46,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY IT",
+   "label": "IT",
+   "last": 30695.1,
+   "variation": -143.75,
+   "percent_change": -0.47,
    "drillable": true
   },
   {
    "symbol": "NIFTY REITS REALTY",
    "label": "REITS REALTY",
-   "last": 1948.3,
-   "variation": -9.05,
-   "percent_change": -0.46,
+   "last": 1945.6,
+   "variation": -11.75,
+   "percent_change": -0.6,
    "drillable": false
   },
   {
    "symbol": "NIFTY500 HEALTH",
    "label": "NIFTY500 HEALTH",
-   "last": 21506.25,
-   "variation": -119.5,
-   "percent_change": -0.55,
+   "last": 21481.25,
+   "variation": -144.5,
+   "percent_change": -0.67,
    "drillable": false
   },
   {
    "symbol": "NIFTY PHARMA",
    "label": "PHARMA",
-   "last": 26509.05,
-   "variation": -149.6,
-   "percent_change": -0.56,
+   "last": 26478.1,
+   "variation": -180.55,
+   "percent_change": -0.68,
    "drillable": true
   },
   {
    "symbol": "NIFTY CHEMICALS",
    "label": "CHEMICALS",
-   "last": 30135.7,
-   "variation": -186.75,
-   "percent_change": -0.62,
+   "last": 30101.8,
+   "variation": -220.65,
+   "percent_change": -0.73,
    "drillable": false
-  },
-  {
-   "symbol": "NIFTY CONSR DURBL",
-   "label": "CONSR DURBL",
-   "last": 39396.7,
-   "variation": -256,
-   "percent_change": -0.65,
-   "drillable": true
   },
   {
    "symbol": "NIFTY HEALTHCARE",
    "label": "HEALTHCARE",
-   "last": 16424.7,
-   "variation": -127.5,
-   "percent_change": -0.77,
+   "last": 16408.05,
+   "variation": -144.15,
+   "percent_change": -0.87,
    "drillable": true
   },
   {
    "symbol": "NIFTY REALTY",
    "label": "REALTY",
-   "last": 907.95,
-   "variation": -8.2,
+   "last": 907.9,
+   "variation": -8.25,
    "percent_change": -0.9,
    "drillable": true
   }
@@ -280,17 +280,17 @@
  "flows": [
   {
    "category": "DII",
-   "date": "03-Sep-2026",
-   "buy": 17063.65,
-   "sell": 12086.19,
-   "net": 4977.46
+   "date": "04-Sep-2026",
+   "buy": 19254.19,
+   "sell": 10324.07,
+   "net": 8930.12
   },
   {
    "category": "FII/FPI",
-   "date": "03-Sep-2026",
-   "buy": 13596.04,
-   "sell": 15941.91,
-   "net": -2345.87
+   "date": "04-Sep-2026",
+   "buy": 13857.58,
+   "sell": 16969.52,
+   "net": -3111.94
   }
  ]
 }
