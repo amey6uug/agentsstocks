@@ -1,279 +1,239 @@
 {
- "generated_at": "2026-09-04T14:24:23.384697+00:00",
+ "generated_at": "2026-09-07T09:24:30.179469+00:00",
  "index": "nifty50",
  "timeframe": "1d",
  "market": {
-  "open": false,
-  "status": "Closed",
-  "as_of": "04-Sep-2026 15:30",
-  "message": "Normal Market has Closed"
+  "open": true,
+  "status": "Open",
+  "as_of": "07-Sep-2026 14:53",
+  "message": "Normal Market is Open"
  },
  "engine": "deterministic",
  "verdicts": [
   {
-   "ticker": "SBILIFE.NS",
-   "name": "SBI Life Insurance Company Ltd.",
-   "price": 1775.0,
-   "verdict": "BUY",
-   "confidence": 5,
-   "levels": {
-    "entry": 1775.0,
-    "entry_basis": "at market, price is already at or below the 20-bar average",
-    "target": 2342.97,
-    "target_basis": "analyst consensus target",
-    "stop": 1700.4,
-    "stop_basis": "52-week low",
-    "upside_pct": 32.0,
-    "downside_pct": -4.2,
-    "risk_reward": 7.61
-   }
-  },
-  {
-   "ticker": "TATASTEEL.NS",
-   "name": "Tata Steel Ltd.",
-   "price": 188.79,
-   "verdict": "BUY",
-   "confidence": 5,
-   "levels": {
-    "entry": 185.74,
-    "entry_basis": "pullback to the 20-bar average",
-    "target": 218.09,
-    "target_basis": "analyst consensus target",
-    "stop": 160.06,
-    "stop_basis": "52-week low",
-    "upside_pct": 17.42,
-    "downside_pct": -13.83,
-    "risk_reward": 1.26
-   }
-  },
-  {
-   "ticker": "HDFCLIFE.NS",
-   "name": "HDFC Life Insurance Company Ltd.",
-   "price": 546.4,
-   "verdict": "BUY",
-   "confidence": 6,
-   "levels": {
-    "entry": 542.32,
-    "entry_basis": "pullback to the 20-bar average",
-    "target": 746.76,
-    "target_basis": "analyst consensus target",
-    "stop": 530.5,
-    "stop_basis": "52-week low",
-    "upside_pct": 37.7,
-    "downside_pct": -2.18,
-    "risk_reward": 17.3
-   }
-  },
-  {
-   "ticker": "HCLTECH.NS",
-   "name": "HCL Technologies Ltd.",
-   "price": 1293.4,
-   "verdict": "SELL",
-   "confidence": 7,
-   "levels": null
-  },
-  {
-   "ticker": "BHARTIARTL.NS",
-   "name": "Bharti Airtel Ltd.",
-   "price": 1840.0,
+   "ticker": "INFY.NS",
+   "name": "Infosys Ltd.",
+   "price": 1087.6,
    "verdict": "HOLD",
    "confidence": 4,
    "levels": null
   },
   {
-   "ticker": "RELIANCE.NS",
-   "name": "Reliance Industries Ltd.",
-   "price": 1322.0,
-   "verdict": "BUY",
+   "ticker": "TECHM.NS",
+   "name": "Tech Mahindra Ltd.",
+   "price": 1558.8,
+   "verdict": "HOLD",
+   "confidence": 4,
+   "levels": null
+  },
+  {
+   "ticker": "JIOFIN.NS",
+   "name": "Jio Financial Services Ltd.",
+   "price": 234.5,
+   "verdict": "SELL",
    "confidence": 6,
-   "levels": {
-    "entry": 1310.15,
-    "entry_basis": "pullback to the 20-bar average",
-    "target": 1677.31,
-    "target_basis": "analyst consensus target",
-    "stop": 1303.11,
-    "stop_basis": "50-bar average",
-    "upside_pct": 28.02,
-    "downside_pct": -0.54,
-    "risk_reward": 52.15
-   }
+   "levels": null
+  },
+  {
+   "ticker": "TATASTEEL.NS",
+   "name": "Tata Steel Ltd.",
+   "price": 184.85,
+   "verdict": "HOLD",
+   "confidence": 4,
+   "levels": null
+  },
+  {
+   "ticker": "SBILIFE.NS",
+   "name": "SBI Life Insurance Company Ltd.",
+   "price": 1737.6,
+   "verdict": "HOLD",
+   "confidence": 4,
+   "levels": null
+  },
+  {
+   "ticker": "WIPRO.NS",
+   "name": "Wipro Ltd.",
+   "price": 173.12,
+   "verdict": "SELL",
+   "confidence": 6,
+   "levels": null
   }
  ],
  "sectors": [
   {
-   "symbol": "NIFTY METAL",
-   "label": "METAL",
-   "last": 13317.45,
-   "variation": 141.4,
-   "percent_change": 1.07,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY FINSEREXBNK",
-   "label": "FINSEREXBNK",
-   "last": 32179.7,
-   "variation": 254.7,
-   "percent_change": 0.8,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY MS IT TELCM",
-   "label": "MS IT TELCM",
-   "last": 10205.9,
-   "variation": 64.9,
-   "percent_change": 0.64,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY MS FIN SERV",
-   "label": "MS FIN SERV",
-   "last": 22818.45,
-   "variation": 125.35,
-   "percent_change": 0.55,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY FINSRV25 50",
-   "label": "FINSRV25 50",
-   "last": 28217.1,
-   "variation": 132.6,
-   "percent_change": 0.47,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY CEMENT",
-   "label": "CEMENT",
-   "last": 14651.6,
-   "variation": 63.4,
-   "percent_change": 0.43,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY MEDIA",
-   "label": "MEDIA",
-   "last": 1565.45,
-   "variation": 4.7,
-   "percent_change": 0.3,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY PVT BANK",
-   "label": "PVT BANK",
-   "last": 27824.5,
-   "variation": 76.65,
-   "percent_change": 0.28,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY OIL AND GAS",
-   "label": "OIL AND GAS",
-   "last": 11187.65,
-   "variation": 23,
-   "percent_change": 0.21,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY BANK",
-   "label": "BANK",
-   "last": 57369.65,
-   "variation": -10.95,
-   "percent_change": -0.02,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY FMCG",
-   "label": "FMCG",
-   "last": 45892.75,
-   "variation": -62.9,
-   "percent_change": -0.14,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY CONSR DURBL",
-   "label": "CONSR DURBL",
-   "last": 39483.8,
-   "variation": -168.9,
-   "percent_change": -0.43,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY PSU BANK",
-   "label": "PSU BANK",
-   "last": 8514.85,
-   "variation": -37.75,
-   "percent_change": -0.44,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY AUTO",
-   "label": "AUTO",
-   "last": 27710.9,
-   "variation": -126.5,
-   "percent_change": -0.45,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY MIDSML HLTH",
-   "label": "MIDSML HLTH",
-   "last": 51936.75,
-   "variation": -238.85,
-   "percent_change": -0.46,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY IT",
-   "label": "IT",
-   "last": 30695.1,
-   "variation": -143.75,
-   "percent_change": -0.47,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY REITS REALTY",
-   "label": "REITS REALTY",
-   "last": 1945.6,
-   "variation": -11.75,
-   "percent_change": -0.6,
-   "drillable": false
-  },
-  {
    "symbol": "NIFTY500 HEALTH",
    "label": "NIFTY500 HEALTH",
-   "last": 21481.25,
-   "variation": -144.5,
-   "percent_change": -0.67,
-   "drillable": false
-  },
-  {
-   "symbol": "NIFTY PHARMA",
-   "label": "PHARMA",
-   "last": 26478.1,
-   "variation": -180.55,
-   "percent_change": -0.68,
-   "drillable": true
-  },
-  {
-   "symbol": "NIFTY CHEMICALS",
-   "label": "CHEMICALS",
-   "last": 30101.8,
-   "variation": -220.65,
-   "percent_change": -0.73,
+   "last": 21600.2,
+   "variation": 118.95,
+   "percent_change": 0.55,
    "drillable": false
   },
   {
    "symbol": "NIFTY HEALTHCARE",
    "label": "HEALTHCARE",
-   "last": 16408.05,
-   "variation": -144.15,
-   "percent_change": -0.87,
+   "last": 16478.2,
+   "variation": 70.15,
+   "percent_change": 0.43,
    "drillable": true
+  },
+  {
+   "symbol": "NIFTY PHARMA",
+   "label": "PHARMA",
+   "last": 26589.4,
+   "variation": 111.3,
+   "percent_change": 0.42,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY MIDSML HLTH",
+   "label": "MIDSML HLTH",
+   "last": 52119.25,
+   "variation": 182.5,
+   "percent_change": 0.35,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY AUTO",
+   "label": "AUTO",
+   "last": 27743.95,
+   "variation": 33.05,
+   "percent_change": 0.12,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY PVT BANK",
+   "label": "PVT BANK",
+   "last": 27737.5,
+   "variation": -87,
+   "percent_change": -0.31,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY MS FIN SERV",
+   "label": "MS FIN SERV",
+   "last": 22740.85,
+   "variation": -77.6,
+   "percent_change": -0.34,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY CHEMICALS",
+   "label": "CHEMICALS",
+   "last": 29991.85,
+   "variation": -109.95,
+   "percent_change": -0.37,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY FINSEREXBNK",
+   "label": "FINSEREXBNK",
+   "last": 32040.1,
+   "variation": -139.6,
+   "percent_change": -0.43,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY FINSRV25 50",
+   "label": "FINSRV25 50",
+   "last": 28089.35,
+   "variation": -127.75,
+   "percent_change": -0.45,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY REITS REALTY",
+   "label": "REITS REALTY",
+   "last": 1936.6,
+   "variation": -9,
+   "percent_change": -0.46,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY BANK",
+   "label": "BANK",
+   "last": 57074.8,
+   "variation": -294.85,
+   "percent_change": -0.51,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY CONSR DURBL",
+   "label": "CONSR DURBL",
+   "last": 39270.9,
+   "variation": -212.9,
+   "percent_change": -0.54,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY FMCG",
+   "label": "FMCG",
+   "last": 45620.55,
+   "variation": -272.2,
+   "percent_change": -0.59,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY MS IT TELCM",
+   "label": "MS IT TELCM",
+   "last": 10143.95,
+   "variation": -61.95,
+   "percent_change": -0.61,
+   "drillable": false
+  },
+  {
+   "symbol": "NIFTY OIL AND GAS",
+   "label": "OIL AND GAS",
+   "last": 11100.45,
+   "variation": -87.2,
+   "percent_change": -0.78,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY PSU BANK",
+   "label": "PSU BANK",
+   "last": 8422.55,
+   "variation": -92.3,
+   "percent_change": -1.08,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY CEMENT",
+   "label": "CEMENT",
+   "last": 14473.85,
+   "variation": -177.75,
+   "percent_change": -1.21,
+   "drillable": false
   },
   {
    "symbol": "NIFTY REALTY",
    "label": "REALTY",
-   "last": 907.9,
-   "variation": -8.25,
-   "percent_change": -0.9,
+   "last": 896.05,
+   "variation": -11.85,
+   "percent_change": -1.31,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY METAL",
+   "label": "METAL",
+   "last": 13140.35,
+   "variation": -177.1,
+   "percent_change": -1.33,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY IT",
+   "label": "IT",
+   "last": 29922.65,
+   "variation": -772.45,
+   "percent_change": -2.52,
+   "drillable": true
+  },
+  {
+   "symbol": "NIFTY MEDIA",
+   "label": "MEDIA",
+   "last": 1523.45,
+   "variation": -42,
+   "percent_change": -2.68,
    "drillable": true
   }
  ],
