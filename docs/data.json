@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-09-11T14:28:57.836112+00:00",
+ "generated_at": "2026-09-14T09:55:37.887222+00:00",
  "index": "nifty50",
  "timeframe": "1d",
  "market": {
   "open": false,
-  "status": "Closed",
+  "status": "Close",
   "as_of": "11-Sep-2026 15:30",
-  "message": "Normal Market has Closed"
+  "message": "Market is Closed"
  },
  "engine": "deterministic",
  "verdicts": [
