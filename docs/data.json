@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-10-01T10:59:54.597277+00:00",
+ "generated_at": "2026-10-02T10:32:53.219854+00:00",
  "index": "nifty50",
  "timeframe": "1d",
  "market": {
   "open": false,
-  "status": "Closed",
+  "status": "Close",
   "as_of": "01-Oct-2026 15:30",
-  "message": "Normal Market has Closed"
+  "message": "Market is Closed"
  },
  "engine": "deterministic",
  "verdicts": [
@@ -14,37 +14,17 @@
    "ticker": "BAJAJ-AUTO.NS",
    "name": "Bajaj Auto Ltd.",
    "price": 10045.0,
-   "verdict": "BUY",
-   "confidence": 5,
-   "levels": {
-    "entry": 10045.0,
-    "entry_basis": "at market, price is already at or below the 20-bar average",
-    "target": 11631.12,
-    "target_basis": "analyst consensus target",
-    "stop": 8491.5,
-    "stop_basis": "52-week low",
-    "upside_pct": 15.79,
-    "downside_pct": -15.47,
-    "risk_reward": 1.02
-   }
+   "verdict": "HOLD",
+   "confidence": 4,
+   "levels": null
   },
   {
    "ticker": "MARUTI.NS",
    "name": "Maruti Suzuki India Ltd.",
    "price": 11386.0,
-   "verdict": "BUY",
-   "confidence": 5,
-   "levels": {
-    "entry": 11386.0,
-    "entry_basis": "at market, price is already at or below the 20-bar average",
-    "target": 15933.15,
-    "target_basis": "analyst consensus target",
-    "stop": 11305.0,
-    "stop_basis": "52-week low",
-    "upside_pct": 39.94,
-    "downside_pct": -0.71,
-    "risk_reward": 56.14
-   }
+   "verdict": "HOLD",
+   "confidence": 4,
+   "levels": null
   },
   {
    "ticker": "INFY.NS",
@@ -58,19 +38,9 @@
    "ticker": "SHRIRAMFIN.NS",
    "name": "Shriram Finance Ltd.",
    "price": 945.0,
-   "verdict": "BUY",
-   "confidence": 5,
-   "levels": {
-    "entry": 945.0,
-    "entry_basis": "at market, price is already at or below the 20-bar average",
-    "target": 1195.19,
-    "target_basis": "analyst consensus target",
-    "stop": 616.05,
-    "stop_basis": "52-week low",
-    "upside_pct": 26.48,
-    "downside_pct": -34.81,
-    "risk_reward": 0.76
-   }
+   "verdict": "HOLD",
+   "confidence": 4,
+   "levels": null
   },
   {
    "ticker": "TATASTEEL.NS",
@@ -85,7 +55,7 @@
    "name": "Adani Ports and Special Economic Zone Ltd.",
    "price": 1737.8,
    "verdict": "BUY",
-   "confidence": 6,
+   "confidence": 5,
    "levels": {
     "entry": 1737.8,
     "entry_basis": "at market, price is already at or below the 20-bar average",
@@ -280,17 +250,17 @@
  "flows": [
   {
    "category": "DII",
-   "date": "30-Sep-2026",
-   "buy": 24413.76,
-   "sell": 13142.03,
-   "net": 11271.73
+   "date": "01-Oct-2026",
+   "buy": 25420.04,
+   "sell": 15378.2,
+   "net": 10041.84
   },
   {
    "category": "FII/FPI",
-   "date": "30-Sep-2026",
-   "buy": 14967.82,
-   "sell": 25116.23,
-   "net": -10148.41
+   "date": "01-Oct-2026",
+   "buy": 12260.26,
+   "sell": 21744.48,
+   "net": -9484.22
   }
  ]
 }
