@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-10-19T16:59:49.195819+00:00",
+ "generated_at": "2026-10-20T09:28:23.449769+00:00",
  "index": "nifty50",
  "timeframe": "1d",
  "market": {
   "open": false,
-  "status": "Closed",
+  "status": "Close",
   "as_of": "19-Oct-2026 15:30",
-  "message": "Normal Market has Closed"
+  "message": "Market is Closed"
  },
  "engine": "deterministic",
  "verdicts": [
@@ -16,14 +16,6 @@
    "price": 1236.0,
    "verdict": "HOLD",
    "confidence": 4,
-   "levels": null
-  },
-  {
-   "ticker": "TMPV.NS",
-   "name": "Tata Motors Passenger Vehicles Ltd.",
-   "price": 278.0,
-   "verdict": "SELL",
-   "confidence": 7,
    "levels": null
   },
   {
@@ -54,6 +46,14 @@
    "ticker": "ULTRACEMCO.NS",
    "name": "UltraTech Cement Ltd.",
    "price": 10650.0,
+   "verdict": "HOLD",
+   "confidence": 4,
+   "levels": null
+  },
+  {
+   "ticker": "HDFCBANK.NS",
+   "name": "HDFC Bank Ltd.",
+   "price": 712.0,
    "verdict": "HOLD",
    "confidence": 4,
    "levels": null
