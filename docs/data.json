@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-10-26T10:12:05.444871+00:00",
+ "generated_at": "2026-10-26T16:49:23.443903+00:00",
  "index": "nifty50",
  "timeframe": "1d",
  "market": {
   "open": false,
   "status": "Closed",
   "as_of": "26-Oct-2026 15:30",
-  "message": "Market in Post-Close Session"
+  "message": "Normal Market has Closed"
  },
  "engine": "deterministic",
  "verdicts": [
@@ -280,17 +280,17 @@
  "flows": [
   {
    "category": "DII",
-   "date": "23-Oct-2026",
-   "buy": 19232.31,
-   "sell": 15996.95,
-   "net": 3235.36
+   "date": "26-Oct-2026",
+   "buy": 17389.57,
+   "sell": 14780.0,
+   "net": 2609.57
   },
   {
    "category": "FII/FPI",
-   "date": "23-Oct-2026",
-   "buy": 14445.54,
-   "sell": 13557.89,
-   "net": 887.65
+   "date": "26-Oct-2026",
+   "buy": 9324.9,
+   "sell": 10787.39,
+   "net": -1462.49
   }
  ]
 }
