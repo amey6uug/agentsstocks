@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-09T12:56:47.564099+00:00",
+ "generated_at": "2026-11-10T12:43:21.601667+00:00",
  "index": "nifty50",
  "timeframe": "1d",
  "market": {
   "open": false,
-  "status": "Closed",
+  "status": "Close",
   "as_of": "09-Nov-2026 15:30",
-  "message": "Normal Market has Closed"
+  "message": "Market is Closed"
  },
  "engine": "deterministic",
  "verdicts": [
@@ -23,7 +23,7 @@
    "name": "State Bank of India",
    "price": 1042.0,
    "verdict": "BUY",
-   "confidence": 8,
+   "confidence": 9,
    "levels": {
     "entry": 972.02,
     "entry_basis": "pullback to the 20-bar average",
