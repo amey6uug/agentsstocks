@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-11-23T14:45:51.435976+00:00",
+ "generated_at": "2026-11-24T14:55:39.785237+00:00",
  "index": "nifty50",
  "timeframe": "1d",
  "market": {
   "open": false,
-  "status": "Closed",
+  "status": "Close",
   "as_of": "23-Nov-2026 15:30",
-  "message": "Normal Market has Closed"
+  "message": "Market is Closed"
  },
  "engine": "deterministic",
  "verdicts": [
@@ -81,13 +81,13 @@
    "levels": {
     "entry": 1510.64,
     "entry_basis": "pullback to the 20-bar average",
-    "target": 1771.66,
+    "target": 1777.27,
     "target_basis": "analyst consensus target",
     "stop": 1415.88,
     "stop_basis": "50-bar average",
-    "upside_pct": 17.28,
+    "upside_pct": 17.65,
     "downside_pct": -6.27,
-    "risk_reward": 2.75
+    "risk_reward": 2.81
    }
   },
   {
